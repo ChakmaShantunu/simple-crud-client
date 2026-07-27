@@ -1,9 +1,10 @@
-import { use } from "react";
+import { use, useState } from "react";
 
 
 const Users = ({ usersPromise }) => {
 
     const initialUsers = use(usersPromise);
+    const [users, setUsers] = useState(initialUsers);
     console.log(initialUsers);
 
     const handleAddUser = e => {
@@ -28,6 +29,9 @@ const Users = ({ usersPromise }) => {
             .then(data => {
                 console.log('data after creating user in the db', data);
                 if (data.insertedId) {
+                    user._id = data.insertedId;
+                    const newUsers = [...users, user];
+                    setUsers(newUsers);
                     alert("User added succesfully");
                     form.reset();
                 }
@@ -48,6 +52,12 @@ const Users = ({ usersPromise }) => {
                     <input type="submit" value="add user" />
                 </form>
             </div>
+
+            {/* view users */}
+
+            {
+                users.map((user) => <p key={user._id}>{user.name} : {user.email}</p>)
+            }
 
         </div>
     );
