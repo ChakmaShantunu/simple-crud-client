@@ -1,9 +1,11 @@
 
+import { Suspense } from 'react';
 import './App.css'
 import Users from './components/Users'
 
 function App() {
 
+  const usersPromise = fetch("http://localhost:3000/users").then(res => res.json());
 
   return (
     <>
@@ -12,7 +14,9 @@ function App() {
       <h1>Simple Crud Operation</h1>
       <br />
       <br />
-      <Users></Users>
+      <Suspense fallback={<p>Loading users...</p>}>
+        <Users usersPromise={usersPromise}></Users>
+      </Suspense>
     </>
   )
 }
