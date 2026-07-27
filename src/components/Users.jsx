@@ -9,7 +9,24 @@ const Users = () => {
         const email = form.email.value;
         const user = { name, email };
         console.log(user);
+
+        
+        // create user in the db
+
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data after creating user in the db', data);
+            })
     }
+
+
     return (
         <div>
 
