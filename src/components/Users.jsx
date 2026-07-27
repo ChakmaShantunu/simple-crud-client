@@ -38,6 +38,10 @@ const Users = ({ usersPromise }) => {
             })
     }
 
+    const handleUserDelete = () => {
+        console.log('user delete done', users._id);
+    }
+
 
     return (
         <div>
@@ -56,7 +60,7 @@ const Users = ({ usersPromise }) => {
             {/* view users */}
 
             {
-                users.map((user) => <p key={user._id}>{user.name} : {user.email}</p>)
+                users.map((user) => <p key={user._id}>{user.name} : {user.email} <button onClick={handleUserDelete}>X</button></p>)
             }
 
         </div>
