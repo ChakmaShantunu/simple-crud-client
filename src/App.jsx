@@ -22,7 +22,9 @@ function App() {
       </Suspense>
       <br />
       <br />
-      <Products productsPromise={productsPromise}></Products>
+      <Suspense fallback={<p>Loading users...</p>}>
+        <Products productsPromise={productsPromise}></Products>
+      </Suspense>
     </>
   )
 }

@@ -28,7 +28,7 @@ const Products = ({ productsPromise }) => {
                 console.log('data after post', data);
                 if (data.insertedId) {
                     product._id = data.insertedId;
-                    const newProducts = [...products, data];
+                    const newProducts = [...products, product];
                     setProducts(newProducts);
                     form.reset()
                 }
@@ -48,7 +48,7 @@ const Products = ({ productsPromise }) => {
 
             <div>
                 {
-                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link>Details</Link> <button>X</button></p>)
+                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link to={`/products/${product._id}`}>Details</Link> <button>X</button></p>)
                 }
             </div>
         </div>
