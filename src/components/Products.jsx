@@ -37,9 +37,22 @@ const Products = ({ productsPromise }) => {
 
     const handleDeleteProduct = (id) => {
         console.log("product deleted", id);
+
+        fetch(`http://localhost:3000/products/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    const remainingProduct = products.filter(product => product._id !== id);
+                    setProducts(remainingProduct);
+                    alert("Delete Complete");
+                }
+                console.log('data after delete', data);
+            })
     };
 
-    
+
     return (
         <div>
             <div>
