@@ -1,4 +1,5 @@
 import { use, useState } from "react";
+import { Link } from "react-router";
 
 
 const Products = ({ productsPromise }) => {
@@ -43,6 +44,12 @@ const Products = ({ productsPromise }) => {
                     <br />
                     <input type="submit" value="add product" />
                 </form>
+            </div>
+
+            <div>
+                {
+                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link>Details</Link> <button>X</button></p>)
+                }
             </div>
         </div>
     );
