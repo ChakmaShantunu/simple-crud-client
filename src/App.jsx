@@ -2,6 +2,7 @@
 import { Suspense } from 'react';
 import './App.css'
 import Users from './components/Users'
+import Products from './components/Products';
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
       <Suspense fallback={<p>Loading users...</p>}>
         <Users usersPromise={usersPromise}></Users>
       </Suspense>
+      <br />
+      <br />
+      <Products></Products>
     </>
   )
 }
