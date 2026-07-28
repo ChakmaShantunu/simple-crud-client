@@ -1,12 +1,14 @@
-
 import { Suspense } from 'react';
 import './App.css'
 import Users from './components/Users'
 import Products from './components/Products';
 
+
+const usersPromise = fetch("http://localhost:3000/users").then(res => res.json());
+const productsPromise = fetch("http://localhost:3000/products").then(res => res.json());
+
 function App() {
 
-  const usersPromise = fetch("http://localhost:3000/users").then(res => res.json());
 
   return (
     <>
@@ -20,7 +22,7 @@ function App() {
       </Suspense>
       <br />
       <br />
-      <Products></Products>
+      <Products productsPromise={productsPromise}></Products>
     </>
   )
 }

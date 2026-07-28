@@ -1,6 +1,11 @@
+import { use, useState } from "react";
 
 
-const Products = () => {
+const Products = ({ productsPromise }) => {
+
+    const initialProducts = use(productsPromise);
+    const [products, setProducts] = useState(initialProducts);
+    console.log(initialProducts);
 
     const handleAddProduct = e => {
         e.preventDefault();
@@ -20,6 +25,12 @@ const Products = () => {
             .then(res => res.json())
             .then(data => {
                 console.log('data after post', data);
+                if (data.insertedId) {
+                    product._id = data.insertedId;
+                    const newProducts = [...products, data];
+                    setProducts(newProducts);
+                    form.reset()
+                }
             })
     }
     return (
