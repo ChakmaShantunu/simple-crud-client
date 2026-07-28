@@ -34,6 +34,12 @@ const Products = ({ productsPromise }) => {
                 }
             })
     }
+
+    const handleDeleteProduct = (id) => {
+        console.log("product deleted", id);
+    };
+
+    
     return (
         <div>
             <div>
@@ -48,7 +54,7 @@ const Products = ({ productsPromise }) => {
 
             <div>
                 {
-                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link to={`/products/${product._id}`}>Details</Link> <button>X</button></p>)
+                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link to={`/products/${product._id}`}>Details</Link> <button onClick={() => handleDeleteProduct(product._id)}>X</button></p>)
                 }
             </div>
         </div>
