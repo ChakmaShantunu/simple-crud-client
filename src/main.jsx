@@ -7,6 +7,7 @@ import MainLayout from './layouts/Mainlayout.jsx';
 import UserDetails from './components/UserDetails.jsx';
 import ProductDetails from './components/ProductDetails.jsx';
 import UpdateUser from './components/UpdateUser.jsx';
+import UpdateProducts from './components/UpdateProducts.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
         path: "/update/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/users/${params.id}`),
         Component: UpdateUser
+      },
+      {
+        path: "/update/:id",
+        loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
+        Component: UpdateProducts
       }
     ]
   },
