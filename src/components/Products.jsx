@@ -44,7 +44,7 @@ const Products = ({ productsPromise }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    const remainingProduct = products.filter(product => product._id !== id);
+                    const remainingProduct = products.filter(product => product._id != id);
                     setProducts(remainingProduct);
                     alert("Delete Complete");
                 }
@@ -56,6 +56,7 @@ const Products = ({ productsPromise }) => {
     return (
         <div>
             <div>
+                <h2>Products: {products.length}</h2>
                 <form onSubmit={handleAddProduct}>
                     <input type="text" name="name" />
                     <br />
