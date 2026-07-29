@@ -14,7 +14,21 @@ const UpdateUser = () => {
         const email = form.email.value;
         const updatedUser = { name, email };
         console.log(updatedUser);
+
+        // update user into the db
+        fetch(`http://localhost:3000/users/${user._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data after update', data);
+            })
     }
+
     return (
         <div>
 
