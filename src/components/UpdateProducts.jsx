@@ -14,7 +14,21 @@ const UpdateProducts = () => {
         const updatedProduct = { name, price };
         console.log(updatedProduct);
 
-        
+        // update product info into the db
+        fetch(`http://localhost:3000/products/${product._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    alert("Product update done");
+                    console.log(data);
+                }
+            })
     }
 
     return (
