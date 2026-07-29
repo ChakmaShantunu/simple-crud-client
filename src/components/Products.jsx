@@ -68,7 +68,7 @@ const Products = ({ productsPromise }) => {
 
             <div>
                 {
-                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link to={`/products/${product._id}`}>Details</Link> <Link to={`/update/${product._id}`}>Edit</Link> <button onClick={() => handleDeleteProduct(product._id)}>X</button></p>)
+                    products.map((product) => <p key={product._id}>{product.name} : {product.price} <Link to={`/products/${product._id}`}>Details</Link> <Link to={`/update/product/${product._id}`}>Edit</Link> <button onClick={() => handleDeleteProduct(product._id)}>X</button></p>)
                 }
             </div>
         </div>

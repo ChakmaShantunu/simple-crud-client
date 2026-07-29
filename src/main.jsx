@@ -29,12 +29,12 @@ const router = createBrowserRouter([
         Component: ProductDetails
       },
       {
-        path: "/update/:id",
+        path: "/update/user/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/users/${params.id}`),
         Component: UpdateUser
       },
       {
-        path: "/update/:id",
+        path: "/update/product/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
         Component: UpdateProducts
       }
