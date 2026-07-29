@@ -25,7 +25,10 @@ const UpdateUser = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('data after update', data);
+                if (data.modifiedCount) {
+                    alert("Update done");
+                    console.log(data);
+                }
             })
     }
 

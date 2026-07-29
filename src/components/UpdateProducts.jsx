@@ -13,6 +13,8 @@ const UpdateProducts = () => {
         const price = form.price.value;
         const updatedProduct = { name, price };
         console.log(updatedProduct);
+
+        
     }
 
     return (
