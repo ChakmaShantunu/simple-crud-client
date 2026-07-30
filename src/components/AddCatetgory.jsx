@@ -1,4 +1,5 @@
 import { use, useState } from "react";
+import { Link } from "react-router";
 
 
 const AddCategory = ({ categoryPromise }) => {
@@ -35,6 +36,22 @@ const AddCategory = ({ categoryPromise }) => {
             })
     }
 
+    const handleDeleteCategory = (id) => {
+        console.log('category deleted', id);
+
+        fetch(`http://localhost:3000/categories/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    const remainingCategories = categories.filter((category) => category._id != id);
+                    setCategories(remainingCategories);
+                    alert("Delete Done");
+                }
+            })
+    }
+
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
@@ -52,7 +69,10 @@ const AddCategory = ({ categoryPromise }) => {
 
             <div>
                 {
-                    categories.map((category) => <p key={category._id}>{category.category_name} : {category.slug}</p>)
+                    categories.map((category) => <p key={category._id}>{category.category_name} : {category.slug}
+                        <Link to={`/categories/category/${category._id}`}>Details</Link>
+                        <Link to={`/categories/category/${category._id}`}>Edit</Link>
+                        <button onClick={() => handleDeleteCategory(category._id)}>X</button></p>)
                 }
             </div>
             <br />
