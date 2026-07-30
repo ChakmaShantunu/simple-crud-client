@@ -70,8 +70,8 @@ const AddCategory = ({ categoryPromise }) => {
             <div>
                 {
                     categories.map((category) => <p key={category._id}>{category.category_name} : {category.slug}
-                        <Link to={`/categories/category/${category._id}`}>Details</Link>
-                        <Link to={`/categories/category/${category._id}`}>Edit</Link>
+                        <Link to={`/categories/${category._id}`}>Details</Link>
+                        <Link to={`/categories/${category._id}`}>Edit</Link>
                         <button onClick={() => handleDeleteCategory(category._id)}>X</button></p>)
                 }
             </div>
