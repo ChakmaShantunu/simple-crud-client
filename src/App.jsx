@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import './App.css'
 import Users from './components/Users'
 import Products from './components/Products';
+import AddCategory from './components/AddCatetgory';
 
 
 const usersPromise = fetch("http://localhost:3000/users").then(res => res.json());
@@ -25,6 +26,9 @@ function App() {
       <Suspense fallback={<p>Loading users...</p>}>
         <Products productsPromise={productsPromise}></Products>
       </Suspense>
+      <br />
+      <br />
+      <AddCategory></AddCategory>
     </>
   )
 }
