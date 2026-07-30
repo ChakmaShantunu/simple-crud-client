@@ -1,6 +1,11 @@
+import { use, useState } from "react";
 
 
-const AddCategory = () => {
+const AddCategory = ({ categoryPromise }) => {
+
+    const initialCategories = use(categoryPromise);
+    const [categories, setCategories] = useState(initialCategories);
+    console.log(categories);
 
     const handleAddCategory = e => {
         e.preventDefault();
@@ -20,14 +25,20 @@ const AddCategory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('after post category', data);
+                if (data.insertedId) {
+                    categories._id = data.insertedId;
+                    const newCategories = [...categories, category];
+                    setCategories(newCategories);
+                    alert("Category post done");
+                    form.reset();
+                }
             })
     }
 
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4 text-center">Add New Category: { }</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Add New Category: {categories.length}</h2>
 
             <div>
                 <form onSubmit={handleAddCategory}>
@@ -37,6 +48,12 @@ const AddCategory = () => {
                     <br />
                     <input type="submit" value="Add Category" />
                 </form>
+            </div>
+
+            <div>
+                {
+                    categories.map((category) => <p key={category._id}>{category.category_name} : {category.slug}</p>)
+                }
             </div>
             <br />
             <br />

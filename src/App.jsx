@@ -7,6 +7,7 @@ import AddCategory from './components/AddCatetgory';
 
 const usersPromise = fetch("http://localhost:3000/users").then(res => res.json());
 const productsPromise = fetch("http://localhost:3000/products").then(res => res.json());
+const categoryPromise = fetch("http://localhost:3000/categories").then(res => res.json());
 
 function App() {
 
@@ -28,7 +29,9 @@ function App() {
       </Suspense>
       <br />
       <br />
-      <AddCategory></AddCategory>
+      <Suspense fallback={<p>Loading users...</p>}>
+        <AddCategory categoryPromise={categoryPromise}></AddCategory>
+      </Suspense>
     </>
   )
 }
